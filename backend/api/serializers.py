@@ -11,4 +11,4 @@ class FlashcardSerializer(serializers.ModelSerializer):
 class FlashcardSetSerializer(serializers.ModelSerializer):
     class Meta:
         model = FlashcardSet
-        fields = ['id', 'title', 'description']
+        fields = ['id', 'title', 'description', 'is_public']

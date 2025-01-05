@@ -4,6 +4,7 @@ from django.db import models
 class FlashcardSet(models.Model):
     title = models.CharField(max_length=30)
     description = models.CharField(max_length=100)
+    is_public = models.BooleanField(default=False)
     # owner = 
 
 

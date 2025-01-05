@@ -1,29 +1,20 @@
-from django.shortcuts import render
-from rest_framework import mixins, generics
+from rest_framework import generics
 from rest_framework.response import Response
 from .models import Flashcard, FlashcardSet
 from .serializers import FlashcardSerializer, FlashcardSetSerializer
 
 
-class FlashcardSetList(mixins.ListModelMixin,
-                       mixins.CreateModelMixin,
-                       generics.GenericAPIView):
-    
+class PublicFlashcardSetList(generics.ListAPIView):
+    queryset = FlashcardSet.objects.filter(is_public=True)
+    serializer_class = FlashcardSetSerializer
+
+
+class FlashcardSetList(generics.ListCreateAPIView):
     queryset = FlashcardSet.objects.all()
     serializer_class = FlashcardSetSerializer
 
-    def get(self, request, *args, **kwargs):
-        return self.list(request, *args, **kwargs)
 
-    def post(self, request, *args, **kwargs):
-        return self.create(request, *args, **kwargs)
-
-
-class FlashcardSetDetail(mixins.RetrieveModelMixin,
-                      mixins.UpdateModelMixin,
-                      mixins.DestroyModelMixin,
-                      generics.GenericAPIView):
-    
+class FlashcardSetDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = FlashcardSet.objects.all()
     serializer_class = FlashcardSetSerializer
 
@@ -41,37 +32,12 @@ class FlashcardSetDetail(mixins.RetrieveModelMixin,
 
         return Response(response_data)
 
-    def put(self, request, *args, **kwargs):
-        return self.update(request, *args, **kwargs)
 
-    def delete(self, request, *args, **kwargs):
-        return self.destroy(request, *args, **kwargs)    
-
-
-class FlashcardList(mixins.ListModelMixin, 
-                    mixins.CreateModelMixin, 
-                    generics.GenericAPIView):
-    
+class FlashcardList(generics.CreateAPIView):
     queryset = Flashcard.objects.all()
     serializer_class = FlashcardSerializer
 
-    def post(self, request, *args, **kwargs):
-        return self.create(request, *args, **kwargs)
-   
 
-class FlashcardDetail(mixins.RetrieveModelMixin,
-                      mixins.UpdateModelMixin,
-                      mixins.DestroyModelMixin,
-                      generics.GenericAPIView):
-    
+class FlashcardDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Flashcard.objects.all()
     serializer_class = FlashcardSerializer
-
-    def get(self, request, *args, **kwargs):
-        return self.retrieve(request, *args, **kwargs)
-
-    def put(self, request, *args, **kwargs):
-        return self.update(request, *args, **kwargs)
-
-    def delete(self, request, *args, **kwargs):
-        return self.destroy(request, *args, **kwargs)
