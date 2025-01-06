@@ -12,7 +12,7 @@ const CardSets = ({ title, cardSets }) => {
 						key={set.id}
 						className='text-md p-4 bg-indigo-100 rounded-lg shadow-md hover:shadow-xl transition-shadow'
 					>
-						<Set title={set.name} descripiotn={set.descripiotn} />
+						<Set id={set.id} title={set.title} description={set.description} />
 					</li>
 				))}
 			</ul>
