@@ -1,27 +1,26 @@
 import { useState } from 'react';
+import Flashcard from '../components/Flashcard.jsx';
 
-const PlayPage = ({ id, cardSet }) => {
-	cardSet = [
-		{ id: 1, question: 'Q1', answer: 'A1' },
-		{ id: 2, question: 'Q2', answer: 'A2' },
-	];
-	// Zakładamy, że `cardSet` zawiera dane zestawu, np. [{ id: 1, question: "Q1", answer: "A1" }]
-	const [currentCardIndex, setCurrentCardIndex] = useState(0);
-	const [showAnswer, setShowAnswer] = useState(false);
+const flashcards = [
+	{ id: 1, question: 'What is the capital of France?', answer: 'Paris' },
+	{ id: 2, question: 'What is 2 + 2?', answer: '4' },
+	{
+		id: 3,
+		question: 'Who wrote "Romeo and Juliet"?',
+		answer: 'William Shakespeare',
+	},
+];
 
-	const currentCard = cardSet[currentCardIndex];
+function PlayPage() {
+	const [currentIndex, setCurrentIndex] = useState(0);
 
 	const handleNextCard = () => {
-		setShowAnswer(false);
-		setCurrentCardIndex(prevIndex =>
-			prevIndex + 1 < cardSet.length ? prevIndex + 1 : 0
-		);
+		setCurrentIndex(prevIndex => (prevIndex + 1) % flashcards.length);
 	};
 
 	const handlePreviousCard = () => {
-		setShowAnswer(false);
-		setCurrentCardIndex(prevIndex =>
-			prevIndex - 1 >= 0 ? prevIndex - 1 : cardSet.length - 1
+		setCurrentIndex(prevIndex =>
+			prevIndex === 0 ? flashcards.length - 1 : prevIndex - 1
 		);
 	};
 
@@ -33,20 +32,9 @@ const PlayPage = ({ id, cardSet }) => {
 
 			<div className='bg-white p-6 rounded-lg shadow-lg w-96 text-center'>
 				<p className='text-lg font-semibold mb-4'>
-					Card {currentCardIndex + 1} of {cardSet.length}
+					Card {currentIndex + 1} of {flashcards.length}
 				</p>
-				<div
-					className='flex items-center justify-center h-48 p-4 rounded-lg mb-4 cursor-pointer bg-indigo-300'
-					onClick={() => setShowAnswer(!showAnswer)}
-				>
-					{showAnswer ? (
-						<p className='text-xl font-bold'>Answer: {currentCard.answer}</p>
-					) : (
-						<p className='text-xl font-bold'>
-							Question: {currentCard.question}
-						</p>
-					)}
-				</div>
+				<Flashcard key={currentIndex} card={flashcards[currentIndex]} />
 
 				<div className='flex justify-between pt-6'>
 					<button
@@ -65,6 +53,6 @@ const PlayPage = ({ id, cardSet }) => {
 			</div>
 		</div>
 	);
-};
+}
 
 export default PlayPage;
