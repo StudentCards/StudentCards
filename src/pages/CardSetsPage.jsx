@@ -1,6 +1,6 @@
 import CardSets from '../components/CardSets.jsx';
 import { useState, useEffect } from 'react';
-import {getPrivateCardSets, getPublicCardSets} from '../api/set-api.js';
+import {getCardSets, getPublicCardSets} from '../api/set-api.js';
 
 const dummySet1 = [
 	{
@@ -30,7 +30,7 @@ const dummySet2 = [
 
 const CardSetsPage = () => {
 	const [isUserLoggedIn, setIsUserLoggedIn] = useState(true);
-	const [privateCardSets, setPrivateCardSets] = useState(dummySet2);
+	const [cardSets, setCardSets] = useState(dummySet2);
 	const [publicCardSets, setPublicCardSets] = useState(dummySet1);
 
 	// useEffect and fetch funcs - IMPLEMENTATION NEEDS AN UPDATE
@@ -39,16 +39,16 @@ const CardSetsPage = () => {
 		const token = localStorage.getItem('authToken');
 		if (token) {
 			setIsUserLoggedIn(true);
-			fetchPrivateCardSets(token);
+			fetchCardSets(token);
 		}
 		fetchPublicCardSets();
 	}, []);
 
-	const fetchPrivateCardSets = async token => {
-		const response = await getPrivateCardSets(token);
+	const fetchCardSets = async token => {
+		const response = await getCardSets(token);
 		
 		if (response.success) {
-			setPrivateCardSets(response.data || []);
+			setCardSets(response.data || []);
 		} else {
 			// setError(response.errMessage);
 		}
@@ -68,7 +68,7 @@ const CardSetsPage = () => {
 		<main className='text-white my-10'>
 			{isUserLoggedIn && (
 				<section className='relative bg-indigo-700 rounded-md pb-16'>
-					<CardSets title='Your private card sets' cardSets={privateCardSets} />
+					<CardSets title='Your card sets' cardSets={cardSets} />
 					<button className='absolute right-5 px-4 p-2 rounded-md transition-all hover:scale-105 hover:bg-indigo-300 text-indigo-950 bg-indigo-200'>
 						Create new card set
 					</button>

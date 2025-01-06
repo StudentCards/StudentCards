@@ -1,4 +1,4 @@
-import { FLASHCARDS_URL } from "./API_URLS.js";
+import { apiCall, FLASHCARDS_URL } from './api.js';
 
 export const postFlashcard = async(data) => {
 
