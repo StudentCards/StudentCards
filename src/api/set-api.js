@@ -1,8 +1,4 @@
-const BASE_URL = 'http://127.0.0.1:8000/';
-const FLASHCARDS_URL = `${BASE_URL}flashcards/`;
-const FLASHCARD_SETS_URL = `${BASE_URL}flashcard-sets/`;
-const PUBLIC_FLASHCARD_SETS_URL = `${FLASHCARD_SETS_URL}public`;
-
+import { FLASHCARD_SETS_URL, PUBLIC_FLASHCARD_SETS_URL } from "./API_URLS.js";
 
 export const getPrivateCardSets = async token => {
     try {
@@ -69,4 +65,14 @@ export const getCardSetDetails = async (id) => {
     }
 }
 
+export const postPrivateCardSet = async(data) => {
 
+}
+
+export const putPrivateCardSet = async(data) => {
+
+}
+
+export const deletePrivateCardSet = async(id) => {
+
+}

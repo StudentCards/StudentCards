@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useParams  } from 'react-router-dom';
-import { getCardSetDetails } from '../api.js';
+import { getCardSetDetails } from '../api/set-api.js';
 
 const PlayPage = () => {
 	// Zakładamy, że `cardSet` zawiera dane zestawu, np. [{ id: 1, question: "Q1", answer: "A1" }]

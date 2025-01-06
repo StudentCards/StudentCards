@@ -1,6 +1,6 @@
 import CardSets from '../components/CardSets.jsx';
 import { useState, useEffect } from 'react';
-import {getPrivateCardSets, getPublicCardSets} from '../api.js';
+import {getPrivateCardSets, getPublicCardSets} from '../api/set-api.js';
 
 const dummySet1 = [
 	{
