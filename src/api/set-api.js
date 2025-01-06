@@ -1,6 +1,7 @@
-import { FLASHCARD_SETS_URL, PUBLIC_FLASHCARD_SETS_URL } from "./API_URLS.js";
+import { apiCall, FLASHCARD_SETS_URL, PUBLIC_FLASHCARD_SETS_URL } from './api.js';
+import axios from 'axios';
 
-export const getPrivateCardSets = async token => {
+export const getCardSets = async token => {
     try {
     	const response = await fetch(FLASHCARD_SETS_URL, {
     		method: 'GET',
@@ -65,14 +66,17 @@ export const getCardSetDetails = async (id) => {
     }
 }
 
-export const postPrivateCardSet = async(data) => {
-
+export const postCardSet = async (data) => {
+    const response = await apiCall(() => axios.post(FLASHCARD_SETS_URL, data));
+    return response;
 }
 
-export const putPrivateCardSet = async(data) => {
-
+export const putCardSet = async (data) => {
+    const response = await apiCall(() => axios.put(`${FLASHCARD_SETS_URL}${data.id}`, data));
+    return response;
 }
 
-export const deletePrivateCardSet = async(id) => {
-
+export const deleteCardSet = async (id) => {
+    const response = await apiCall(() => axios.delete(`${FLASHCARD_SETS_URL}${id}`));
+    return response;
 }
