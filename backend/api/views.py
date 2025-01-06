@@ -14,7 +14,7 @@ class FlashcardSetList(generics.ListCreateAPIView):
     serializer_class = FlashcardSetSerializer
 
 
-class FlashcardSetDetail(generics.RetrieveUpdateDestroyAPIView):
+class FlashcardSetDetails(generics.RetrieveUpdateDestroyAPIView):
     queryset = FlashcardSet.objects.all()
     serializer_class = FlashcardSetSerializer
 
@@ -38,6 +38,6 @@ class FlashcardList(generics.CreateAPIView):
     serializer_class = FlashcardSerializer
 
 
-class FlashcardDetail(generics.RetrieveUpdateDestroyAPIView):
+class FlashcardDetails(generics.RetrieveUpdateDestroyAPIView):
     queryset = Flashcard.objects.all()
     serializer_class = FlashcardSerializer

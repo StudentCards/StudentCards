@@ -1,29 +1,30 @@
 import CardSets from '../components/CardSets.jsx';
 import { useState, useEffect } from 'react';
+import {getPrivateCardSets, getPublicCardSets} from '../api.js';
 
 const dummySet1 = [
 	{
 		id: 1,
-		name: 'Spanish',
-		descripiotn: 'Words translations - chapter "Family"',
+		title: 'Spanish',
+		description: 'Words translations - chapter "Family"',
 	},
-	{ id: 2, name: 'History', descripiotn: 'Dates from World War II' },
-	{ id: 3, name: 'Math', descripiotn: 'Abbreviated multiplication table' },
-	{ id: 4, name: 'Physics', descripiotn: 'Formulas for "Electromagnetism"' },
-	{ id: 5, name: 'Chemistry', descripiotn: 'Abbreviated periodic table' },
+	{ id: 2, title: 'History', description: 'Dates from World War II' },
+	{ id: 3, title: 'Math', description: 'Abbreviated multiplication table' },
+	{ id: 4, title: 'Physics', description: 'Formulas for "Electromagnetism"' },
+	{ id: 5, title: 'Chemistry', description: 'Abbreviated periodic table' },
 ];
 
 const dummySet2 = [
 	{
 		id: 1,
-		name: 'Biology',
-		descripiotn: 'Human body',
+		title: 'Biology',
+		description: 'Human body',
 	},
-	{ id: 2, name: 'Geography', descripiotn: 'Capitals of the world' },
+	{ id: 2, title: 'Geography', description: 'Capitals of the world' },
 	{
 		id: 3,
-		name: 'Computer Science',
-		descripiotn: 'Basic concepts of programming',
+		title: 'Computer Science',
+		description: 'Basic concepts of programming',
 	},
 ];
 
@@ -44,47 +45,25 @@ const CardSetsPage = () => {
 	}, []);
 
 	const fetchPrivateCardSets = async token => {
-		// try {
-		// 	const response = await fetch('/api/card-sets/private', {
-		// 		method: 'GET',
-		// 		headers: {
-		// 			Authorization: `Bearer ${token}`,
-		// 			'Content-Type': 'application/json',
-		// 		},
-		// 	});
-
-		// 	if (!response.ok) {
-		// 		throw new Error('Failed to fetch private card sets');
-		// 	}
-
-		// 	const data = await response.json();
-		// 	setPrivateCardSets(data.cardSets || []);
-		// } catch (err) {
-		// 	console.log(err);
-		// 	// setError(err.message);
-		// }
+		const response = await getPrivateCardSets(token);
+		
+		if (response.success) {
+			setPrivateCardSets(response.data || []);
+		} else {
+			// setError(response.errMessage);
+		}
 	};
 
 	const fetchPublicCardSets = async () => {
-		// try {
-		// 	const response = await fetch('/api/card-sets/public', {
-		// 		method: 'GET',
-		// 		headers: {
-		// 			'Content-Type': 'application/json',
-		// 		},
-		// 	});
+		const response = await getPublicCardSets();
 
-		// 	if (!response.ok) {
-		// 		throw new Error('Failed to fetch public card sets');
-		// 	}
-
-		// 	const data = await response.json();
-		// 	setPublicCardSets(data.cardSets || []);
-		// } catch (err) {
-		//	console.log(err)
-		// 	// 	setError(err.message);
-		// }
+		if (response.success) {
+			setPublicCardSets(response.data || []);
+		} else {
+			// setError(response.errMessage);
+		}
 	};
+
 	return (
 		<main className='text-white my-10'>
 			{isUserLoggedIn && (

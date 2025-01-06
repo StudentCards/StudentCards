@@ -9,7 +9,7 @@ class FlashcardSet(models.Model):
 
 
 class Flashcard(models.Model):
-    front_side = models.CharField(max_length=50)
-    back_side = models.CharField(max_length=50)
+    question = models.CharField(max_length=50)
+    answer = models.CharField(max_length=50)
     flashcard_set = models.ForeignKey(FlashcardSet, on_delete=models.CASCADE)
     
