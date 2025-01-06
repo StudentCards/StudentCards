@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import Label from '../components/fromComponents/Label';
-import InputField from '../components/fromComponents/InputField';
-import Header from '../components/fromComponents/Header';
+import Label from '../components/formComponents/Label.jsx';
+import InputField from '../components/formComponents/InputField.jsx';
+import Header from '../components/formComponents/Header.jsx';
 
 const AuthPage = () => {
 	const [isLoginMode, setIsLoginMode] = useState(true);
