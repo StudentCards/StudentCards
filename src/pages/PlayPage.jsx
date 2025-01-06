@@ -13,6 +13,7 @@ const flashcards = [
     },
 ];
 
+
 const PlayPage = () => {
     // Zakładamy, że `cardSet` zawiera dane zestawu, np. [{ id: 1, question: "Q1", answer: "A1" }]
     const [cardSet, setCardSet] = useState([{id: 0, question: '', answer: ''}]);
