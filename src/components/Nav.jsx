@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
+import {LOGOUT_URL} from "../api/api.js";
 
 const Nav = () => {
 	const [username, setUsername] = useState('');
@@ -11,6 +12,27 @@ const Nav = () => {
 			setUsername('asd');
 		}
 	}, []);
+
+	const handleLogout = async () => {
+		try {
+			const refreshToken = localStorage.getItem("refresh_token");
+			await fetch(LOGOUT_URL, {
+				method: "POST", headers: {
+					"Content-Type": "application/json",
+				}, body: JSON.stringify({refresh_token: refreshToken}),
+			});
+
+			// Usuń tokeny z localStorage
+			localStorage.removeItem("access_token");
+			localStorage.removeItem("refresh_token");
+			localStorage.removeItem('authToken');
+
+			// Przekieruj na stronę logowania
+			window.location.href = "/auth";
+		} catch (error) {
+			console.error("Logout failed:", error);
+		}
+	};
 
 	return (
 		<div className=' bg-opacity-10 text-white shadow-md'>
@@ -40,11 +62,15 @@ const Nav = () => {
 								Login
 							</Link>
 						) : (
+
 							<div className='flex justify-end items-center'>
 								<p className='text-xl mx-5 text-indigo-200 tracking-tighter'>
 									{username}
 								</p>
-								<button className='bg-indigo-500 px-5 py-2 rounded-md hover:bg-indigo-400 transition-colors'>
+								<button
+									className='bg-indigo-500 px-5 py-2 rounded-md hover:bg-indigo-400 transition-colors'
+									onClick={handleLogout}
+								>
 									Logout
 								</button>
 							</div>

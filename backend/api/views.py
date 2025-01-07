@@ -1,5 +1,6 @@
 from rest_framework import generics
 from rest_framework.response import Response
+from rest_framework.permissions import IsAuthenticated
 from .models import Flashcard, FlashcardSet
 from .serializers import FlashcardSerializer, FlashcardSetSerializer
 
@@ -10,11 +11,13 @@ class PublicFlashcardSetList(generics.ListAPIView):
 
 
 class FlashcardSetList(generics.ListCreateAPIView):
+    permission_classes = [IsAuthenticated]
     queryset = FlashcardSet.objects.all()
     serializer_class = FlashcardSetSerializer
 
 
 class FlashcardSetDetails(generics.RetrieveUpdateDestroyAPIView):
+    permission_classes = [IsAuthenticated]
     queryset = FlashcardSet.objects.all()
     serializer_class = FlashcardSetSerializer
 
@@ -34,10 +37,12 @@ class FlashcardSetDetails(generics.RetrieveUpdateDestroyAPIView):
 
 
 class FlashcardList(generics.CreateAPIView):
+    permission_classes = [IsAuthenticated]
     queryset = Flashcard.objects.all()
     serializer_class = FlashcardSerializer
 
 
 class FlashcardDetails(generics.RetrieveUpdateDestroyAPIView):
+    permission_classes = [IsAuthenticated]
     queryset = Flashcard.objects.all()
     serializer_class = FlashcardSerializer
