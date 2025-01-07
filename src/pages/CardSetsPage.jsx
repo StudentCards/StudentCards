@@ -33,14 +33,11 @@ const CardSetsPage = () => {
 	const [cardSets, setCardSets] = useState(dummySet2);
 	const [publicCardSets, setPublicCardSets] = useState(dummySet1);
 
-	// useEffect and fetch funcs - IMPLEMENTATION NEEDS AN UPDATE
+	// update this when auth/login backend is ready
 	useEffect(() => {
-		// will token auth be used???
-		const token = localStorage.getItem('authToken');
+		const token = '';
 		if (token) {
 			setIsUserLoggedIn(true);
-			// Poprawić jak będzie backend dla użytkownika
-			//fetchCardSets(token);
 		}
 		fetchCardSets('dummy token'); // Tymczasowo poza if-em, usunąć jak będzie backend dla użytkownika 
 

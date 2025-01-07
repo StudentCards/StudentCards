@@ -20,26 +20,11 @@ const AuthPage = () => {
 			}
 			delete data.confirmPassword; // remove unnecessary field for the backend
 		}
-		// w trybie register trzeba sprawdzić czy nazwa nie jest zajęta
 
 		const preparedData = JSON.stringify(data);
 		console.log(preparedData);
 
-		// Wysyłanie danych do backendu:    DOSTOSOWAĆ IMPLEMENTACJE
-		// fetch('https://api.example.com/auth', {
-		//   method: 'POST',
-		//   headers: {
-		//     'Content-Type': 'application/json',
-		//   },
-		//   body: preparedData,
-		// })
-		//   .then(response => response.json())
-		//   .then(result => console.log('Success:', result))
-		//   .catch(error => console.error('Error:', error));
-
-		// CZEGO UŻYWAMY ??
-
-		// BRAKUJE IMPLEMNTACJI CO PO ZALOGOWANIU
+		// send data do backend
 	};
 
 	return (
