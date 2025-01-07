@@ -7,7 +7,7 @@ const Nav = () => {
 
 	useEffect(() => {
 		// will token auth be used???
-		const token = localStorage.getItem('authToken');
+		const token = '';
 		if (token) {
 			setUsername(localStorage.getItem('username'));
 		}
