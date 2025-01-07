@@ -58,7 +58,7 @@ export const getPublicCardSets = async () => {
 };
 
 export const getCardSetDetails = async (id) => {
-    const response = await apiCall(() => axios.get(`${FLASHCARD_SETS_URL}${id}`), true);
+    const response = await apiCall(() => axios.get(`${FLASHCARD_SETS_URL}${id}/`), true);
     return response;
 
     // Legacy code
@@ -90,11 +90,11 @@ export const postCardSet = async (data) => {
 }
 
 export const putCardSet = async (data) => {
-    const response = await apiCall(() => axios.put(`${FLASHCARD_SETS_URL}${data.id}`, data));
+    const response = await apiCall(() => axios.put(`${FLASHCARD_SETS_URL}${data.id}/`, data));
     return response;
 }
 
 export const deleteCardSet = async (id) => {
-    const response = await apiCall(() => axios.delete(`${FLASHCARD_SETS_URL}${id}`));
+    const response = await apiCall(() => axios.delete(`${FLASHCARD_SETS_URL}${id}/`));
     return response;
 }
