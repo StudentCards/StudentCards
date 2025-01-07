@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import {useEffect, useState} from 'react';
 import {useParams} from 'react-router-dom';
 import {getCardSetDetails} from '../api.js';
@@ -13,6 +14,36 @@ const flashcards = [
     },
 ];
 
+=======
+import { useEffect, useState } from 'react';
+import { useParams  } from 'react-router-dom';
+import { getCardSetDetails } from '../api/set-api.js';
+import Flashcard from '../components/Flashcard.jsx';
+
+function PlayPage() {
+	const [flashcards, setFlashcards] = useState([{id: 0, question: '', answer: ''}]);
+	const [currentIndex, setCurrentIndex] = useState(0);
+	const [title, setTitle] = useState('');
+
+	const {id} = useParams();
+
+	useEffect(() => {
+		const fetchCardSetDetails = async (id) => {
+			const response = await getCardSetDetails(id);
+
+			if (response.success) {
+				setFlashcards(response.data.flashcards);
+				setTitle(response.data.flashcard_set.title);
+				setCurrentIndex(0);
+			} else {
+				// Error
+			}
+		}
+
+		fetchCardSetDetails(id);
+
+	}, [id]);
+>>>>>>> cbfe44524b4e4851a1d8a8d7db713be0a5c18dcc
 
 const PlayPage = () => {
     // Zakładamy, że `cardSet` zawiera dane zestawu, np. [{ id: 1, question: "Q1", answer: "A1" }]
@@ -24,9 +55,17 @@ const PlayPage = () => {
 
     const {id} = useParams();
 
+<<<<<<< HEAD
     useEffect(() => {
         const fetchCardSetDetails = async (id) => {
             const response = await getCardSetDetails(id);
+=======
+	return (
+		<div className='mt-20  flex flex-col items-center justify-center'>			
+			<h1 className='text-2xl text-white font-bold mb-6'>
+				{title}
+			</h1>
+>>>>>>> cbfe44524b4e4851a1d8a8d7db713be0a5c18dcc
 
             if (response.success) {
                 setCardSet(response.data.flashcards);
