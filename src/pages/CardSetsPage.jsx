@@ -35,7 +35,6 @@ const CardSetsPage = () => {
 
 	// useEffect and fetch funcs - IMPLEMENTATION NEEDS AN UPDATE
 	useEffect(() => {
-		// will token auth be used???
 		const token = localStorage.getItem('authToken');
 		if (token) {
 			setIsUserLoggedIn(true);
@@ -48,7 +47,12 @@ const CardSetsPage = () => {
 		const response = await getCardSets(token);
 		
 		if (response.success) {
-			setCardSets(response.data || []);
+			console.log(response.data)
+			if(response.data.length !== 0){
+				setCardSets(response.data);
+			}
+			// setCardSets(response.data || []); wersja docelowa po dodaniu setów do bazy
+
 		} else {
 			// setError(response.errMessage);
 		}
@@ -58,7 +62,12 @@ const CardSetsPage = () => {
 		const response = await getPublicCardSets();
 
 		if (response.success) {
-			setPublicCardSets(response.data || []);
+			console.log(response.data)
+			if(response.data.length !== 0){
+				setPublicCardSets(response.data);
+			}
+			// setPublicCardSets(response.data || []); wersja docelowa po dodaniu setów do bazy
+
 		} else {
 			// setError(response.errMessage);
 		}
