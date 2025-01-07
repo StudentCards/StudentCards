@@ -9,7 +9,7 @@ const HomePage = () => {
 					className='animate-pulse  size-44 md:size-60 md:m-10 '
 					icon={faGraduationCap}
 				/>
-				<h1 className='text-2xl font-bold mb-4'>Welcome in Flashcard app!</h1>
+				<h1 className='text-2xl font-bold mb-4'>Welcome to StudentCards!</h1>
 				<p className='text-lg max-w-screen-sm'>
 					This app will help you learn through interactive flashcards.
 				</p>

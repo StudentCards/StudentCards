@@ -6,7 +6,7 @@ export const PUBLIC_FLASHCARD_SETS_URL = `${FLASHCARD_SETS_URL}public`;
 export const LOGIN_URL = `${BASE_URL}auth/login/`;
 export const REGISTER_URL = `${BASE_URL}auth/registration/`;
 export const LOGOUT_URL = `${BASE_URL}auth/logout/`;
-
+export const PUBLIC_FLASHCARD_SETS_URL = `${FLASHCARD_SETS_URL}public/`;
 
 export const apiCall = async(func, returnResponseData=false) => {
     try {
@@ -17,8 +17,8 @@ export const apiCall = async(func, returnResponseData=false) => {
         } else {
             return {'success': true};
         }
-    } catch(err) {
-        console.log(err);
-        return {'success': false, 'errMessage': err.message};
+    } catch(error) {
+        console.log(error);
+        return {'success': false, 'errorMessage': error.message};
     }
 }

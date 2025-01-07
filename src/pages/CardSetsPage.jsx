@@ -38,8 +38,11 @@ const CardSetsPage = () => {
 		const token = localStorage.getItem('authToken');
 		if (token) {
 			setIsUserLoggedIn(true);
-			fetchCardSets(token);
+			// Poprawić jak będzie backend dla użytkownika
+			//fetchCardSets(token);
 		}
+		fetchCardSets('dummy token'); // Tymczasowo poza if-em, usunąć jak będzie backend dla użytkownika 
+
 		fetchPublicCardSets();
 	}, []);
 
@@ -54,7 +57,7 @@ const CardSetsPage = () => {
 			// setCardSets(response.data || []); wersja docelowa po dodaniu setów do bazy
 
 		} else {
-			// setError(response.errMessage);
+			// setError(response.errorMessage);
 		}
 	};
 
@@ -69,7 +72,7 @@ const CardSetsPage = () => {
 			// setPublicCardSets(response.data || []); wersja docelowa po dodaniu setów do bazy
 
 		} else {
-			// setError(response.errMessage);
+			// setError(response.errorMessage);
 		}
 	};
 

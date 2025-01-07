@@ -44,7 +44,7 @@ const Nav = () => {
 								to='/'
 								className='md:text-2xl font-bold hover:text-indigo-100'
 							>
-								Flashcards
+								StudentCards
 							</Link>
 						</li>
 						<li>
