@@ -20,7 +20,7 @@ function PlayPage() {
 				setTitle(response.data.flashcard_set.title);
 				setCurrentIndex(0);
 		
-				flashcards.length > 0 || setMessage('This flashcard set is empty 😥');
+				response.data.flashcards.length > 0 || setMessage('This flashcard set is empty 😥');
 			} else {
 				// Error
 			}

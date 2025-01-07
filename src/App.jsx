@@ -4,6 +4,7 @@ import HomePage from './pages/HomePage.jsx';
 import CardSetsPage from './pages/CardSetsPage.jsx';
 import AuthPage from './pages/AuthPage.jsx';
 import PlayPage from './pages/PlayPage.jsx';
+import ManageSetPage from './pages/ManageSetPage.jsx';
 import './index.css';
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
 						<Route path='/sets' element={<CardSetsPage />} />
 						<Route path='/play/:id' element={<PlayPage />} />
 						<Route path='/auth' element={<AuthPage />} />
+						<Route path='/manage-set/:id' element={<ManageSetPage />} />
 					</Routes>
 				</div>
 			</div>

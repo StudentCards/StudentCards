@@ -12,8 +12,9 @@ const Set = ({ id, title, description }) => {
 			>
 				play
 			</Link>
+
 			<Link
-				to={`/manageSet/${id}`}
+				to={`/manage-set/${id}`}
 				className={`${btnClasses} right-16`}
 			>
 				manage
