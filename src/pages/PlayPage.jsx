@@ -4,9 +4,10 @@ import { getCardSetDetails } from '../api/set-api.js';
 import Flashcard from '../components/Flashcard.jsx';
 
 function PlayPage() {
-	const [flashcards, setFlashcards] = useState([{id: 0, question: '', answer: ''}]);
+	const [flashcards, setFlashcards] = useState([]);
 	const [currentIndex, setCurrentIndex] = useState(0);
 	const [title, setTitle] = useState('');
+	const [message, setMessage] = useState('');
 
 	const {id} = useParams();
 
@@ -18,6 +19,8 @@ function PlayPage() {
 				setFlashcards(response.data.flashcards);
 				setTitle(response.data.flashcard_set.title);
 				setCurrentIndex(0);
+		
+				flashcards.length > 0 || setMessage('This flashcard set is empty 😥');
 			} else {
 				// Error
 			}
@@ -36,7 +39,16 @@ function PlayPage() {
 			prevIndex === 0 ? flashcards.length - 1 : prevIndex - 1
 		);
 	};
-
+	if (flashcards.length == 0) {
+		return (
+			<div className='mt-20  flex flex-col items-center justify-center'>	
+				<h1 className='text-2xl text-white font-bold mb-6'>
+					{message}
+				</h1>
+			</div>
+		);
+	}
+	
 	return (
 		<div className='mt-20  flex flex-col items-center justify-center'>			
 			<h1 className='text-2xl text-white font-bold mb-6'>

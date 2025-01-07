@@ -1,7 +1,12 @@
 import { apiCall, FLASHCARD_SETS_URL, PUBLIC_FLASHCARD_SETS_URL } from './api.js';
 import axios from 'axios';
 
-export const getCardSets = async token => {
+export const getCardSets = async (token) => {
+    const response = await apiCall(() => axios.get(FLASHCARD_SETS_URL), true);
+    return response;
+
+    // Legacy code
+    /*
     try {
     	const response = await fetch(FLASHCARD_SETS_URL, {
     		method: 'GET',
@@ -22,9 +27,15 @@ export const getCardSets = async token => {
     	console.log(err);
         return {'success': false, 'errMessage': err.message};
     }
+    */
 };
 
 export const getPublicCardSets = async () => {
+    const response = await apiCall(() => axios.get(PUBLIC_FLASHCARD_SETS_URL), true);
+    return response;
+    
+    // Legacy code
+    /*
     try {
         const response = await fetch(PUBLIC_FLASHCARD_SETS_URL, {
             method: 'GET',
@@ -43,9 +54,15 @@ export const getPublicCardSets = async () => {
         console.log(err);
         return {'success': false, 'errMessage': err.message};
     }
+    */
 };
 
 export const getCardSetDetails = async (id) => {
+    const response = await apiCall(() => axios.get(`${FLASHCARD_SETS_URL}${id}`), true);
+    return response;
+
+    // Legacy code
+    /*
     try {
         const response = await fetch(`${FLASHCARD_SETS_URL}${id}`, {
             method: 'GET',
@@ -64,6 +81,7 @@ export const getCardSetDetails = async (id) => {
         console.log(err);
         return {'success': false, 'errMessage': err.message};
     }
+    */
 }
 
 export const postCardSet = async (data) => {

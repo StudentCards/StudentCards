@@ -13,8 +13,8 @@ export const apiCall = async(func, returnResponseData=false) => {
         } else {
             return {'success': true};
         }
-    } catch(err) {
-        console.log(err);
-        return {'success': false, 'errMessage': err.message};
+    } catch(error) {
+        console.log(error);
+        return {'success': false, 'errorMessage': error.message};
     }
 }
