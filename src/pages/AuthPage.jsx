@@ -2,11 +2,10 @@ import {useState} from 'react';
 import Label from '../components/formComponents/Label.jsx';
 import InputField from '../components/formComponents/InputField.jsx';
 import Header from '../components/formComponents/Header.jsx';
-import {LOGIN_URL, REGISTER_URL} from "../api/api.js";
+import {login, register} from '../api/auth';
 
 const AuthPage = () => {
     const [isLoginMode, setIsLoginMode] = useState(true);
-    // isLoginMode == False -> register mode
     const [errorMessage, setErrorMessage] = useState('');
     const [loading, setLoading] = useState(false);
 
@@ -18,53 +17,28 @@ const AuthPage = () => {
         const formData = new FormData(e.target);
         const data = Object.fromEntries(formData);
 
-        // add confirm passwd in register mode
         if (!isLoginMode) {
             if (data.password !== data.confirmPassword) {
                 setErrorMessage('Passwords do not match!');
                 setLoading(false);
-				return;
+                return;
             }
-            delete data.confirmPassword; // remove unnecessary field for the backend
+            delete data.confirmPassword;
         }
-        // w trybie register trzeba sprawdzić czy nazwa nie jest zajęta
 
-        const preparedData = JSON.stringify(data);
-        console.log(preparedData);
-
-        const endpoint = isLoginMode
-            ? LOGIN_URL
-            : REGISTER_URL;
-
-        // Wysyłanie danych do backendu
         try {
-            const response = await fetch(endpoint, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: preparedData,
-            });
-
-            const result = await response.json();
-            console.log(result)
-
-            if (response.ok) {
-                // Po zalogowaniu zapisz token w localStorage
-                if (isLoginMode) {
-                    localStorage.setItem('authToken', result.token);
-                    localStorage.setItem('username', result.username);
-                    // przekierowanie do /sets -- niedostępne dla niezalogowanego użytkownika
-                    window.location.href = '/sets';
-                } else {
-                    setErrorMessage('Account created successfully! Please log in.')
-                }
+            if (isLoginMode) {
+                const result = await login(data);
+                localStorage.setItem('authToken', result.access_token);
+                localStorage.setItem('refreshToken', result.refresh_token);
+                localStorage.setItem('username', result.username);
+                window.location.href = '/sets';
             } else {
-                // Obsługa błędów zwróconych przez backend
-                setErrorMessage(result.detail || 'An error occurred.');
+                await register(data);
+                setErrorMessage('Account created successfully! Please log in.');
             }
         } catch (error) {
-            setErrorMessage('Network error. Please try again later.');
+            setErrorMessage(error.message);
         } finally {
             setLoading(false);
         }
@@ -124,7 +98,7 @@ const AuthPage = () => {
                             : isLoginMode
                                 ? 'Log In'
                                 : 'Sign Up'}
-					</button>
+                    </button>
                 </form>
                 <p className='text-center text-sm sm:text-base text-gray-600 mt-6 sm:mt-8'>
                     {isLoginMode

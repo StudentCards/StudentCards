@@ -21,7 +21,10 @@ class LoginView(APIView):
         if user is not None:
             # Generowanie tokenu JWT dla użytkownika
             refresh = RefreshToken.for_user(user)
-            return Response({"token": str(refresh.access_token), "username": username}, status=HTTP_200_OK)
+            access_token = str(refresh.access_token)
+            refresh_token = str(refresh)
+
+            return Response({"access_token": access_token, "refresh_token": refresh_token, "username": username}, status=HTTP_200_OK)
         return Response({"detail": "Invalid credentials"}, status=HTTP_400_BAD_REQUEST)
 
 
