@@ -10,12 +10,13 @@ const AuthPage = () => {
 	const [errorMessage, setErrorMessage] = useState('');
 	const [successMessage, setSuccessMessage] = useState('');
 	const [loading, setLoading] = useState(false);
-    const formRef = useRef(null);
+	const formRef = useRef(null);
 
 	const handleSubmit = async e => {
 		e.preventDefault();
 		setLoading(true);
 		setErrorMessage('');
+		setSuccessMessage('');
 
 		const formData = new FormData(e.target);
 		const data = Object.fromEntries(formData);
@@ -33,6 +34,7 @@ const AuthPage = () => {
 				setLoading(false);
 				return;
 			}
+
 			delete data.confirmPassword;
 		}
 
@@ -46,14 +48,21 @@ const AuthPage = () => {
 			} else {
 				await register(data);
 				setSuccessMessage('Account created successfully! Please log in.');
-                formRef.current.reset();
-                setIsLoginMode(true)
+				formRef.current.reset();
+				setIsLoginMode(true);
 			}
 		} catch (error) {
 			setErrorMessage(error.message);
 		} finally {
 			setLoading(false);
 		}
+	};
+
+	const toggleMode = () => {
+		setIsLoginMode(!isLoginMode);
+		setErrorMessage('');
+		setSuccessMessage('');
+		formRef.current.reset();
 	};
 
 	return (
@@ -117,7 +126,7 @@ const AuthPage = () => {
 						: 'Already have an account? '}
 					<button
 						type='button'
-						onClick={() => setIsLoginMode(!isLoginMode)}
+						onClick={toggleMode}
 						className='text-indigo-600 font-bold hover:underline'
 					>
 						{isLoginMode ? 'Sign up' : 'Log in'}
