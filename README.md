@@ -38,10 +38,11 @@ This project was created as part of the Software Architecture course.
 - Python
 
 ### Frontend Setup
+In first terminal:
 1. Clone the repository:
     ```bash
     git clone https://github.com/your-repo/flashcard-app.git
-    cd flashcard-app
+    cd StudentCards
     ```
 2. Install dependencies:
     ```bash
@@ -53,8 +54,10 @@ This project was created as part of the Software Architecture course.
     ```
 
 ### Backend Setup
+In second terminal:
 1. Navigate to the backend directory:
     ```bash
+    cd StudentCards
     cd backend
     ```
 2. Install dependencies:
