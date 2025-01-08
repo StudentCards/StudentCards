@@ -8,6 +8,7 @@ import validatePassword from '../utils/passwordValidation';
 const AuthPage = () => {
 	const [isLoginMode, setIsLoginMode] = useState(true);
 	const [errorMessage, setErrorMessage] = useState('');
+	const [successMessage, setSuccessMessage] = useState('');
 	const [loading, setLoading] = useState(false);
 
 	const handleSubmit = async e => {
@@ -43,7 +44,7 @@ const AuthPage = () => {
 				window.location.href = '/sets';
 			} else {
 				await register(data);
-				setErrorMessage('Account created successfully! Please log in.');
+				setSuccessMessage('Account created successfully! Please log in.');
 			}
 		} catch (error) {
 			setErrorMessage(error.message);
@@ -93,6 +94,9 @@ const AuthPage = () => {
 					)}
 					{errorMessage && (
 						<p className='text-red-600 text-center mb-4'>{errorMessage}</p>
+					)}
+					{successMessage && (
+						<p className='text-green-600 text-center mb-4'>{successMessage}</p>
 					)}
 					<button
 						type='submit'
