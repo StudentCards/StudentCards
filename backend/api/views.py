@@ -11,13 +11,13 @@ class PublicFlashcardSetList(generics.ListAPIView):
 
 
 class FlashcardSetList(generics.ListCreateAPIView):
-    permission_classes = [IsAuthenticated]
+    # permission_classes = [IsAuthenticated]
     queryset = FlashcardSet.objects.all()
     serializer_class = FlashcardSetSerializer
 
 
 class FlashcardSetDetails(generics.RetrieveUpdateDestroyAPIView):
-    permission_classes = [IsAuthenticated]
+    # permission_classes = [IsAuthenticated]
     queryset = FlashcardSet.objects.all()
     serializer_class = FlashcardSetSerializer
 
@@ -37,12 +37,12 @@ class FlashcardSetDetails(generics.RetrieveUpdateDestroyAPIView):
 
 
 class FlashcardList(generics.CreateAPIView):
-    permission_classes = [IsAuthenticated]
+    # permission_classes = [IsAuthenticated]
     queryset = Flashcard.objects.all()
     serializer_class = FlashcardSerializer
 
 
 class FlashcardDetails(generics.RetrieveUpdateDestroyAPIView):
-    permission_classes = [IsAuthenticated]
+    # permission_classes = [IsAuthenticated]
     queryset = Flashcard.objects.all()
     serializer_class = FlashcardSerializer

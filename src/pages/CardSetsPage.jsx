@@ -1,47 +1,21 @@
 import CardSets from '../components/CardSets.jsx';
-import { useState, useEffect } from 'react';
+import { useState, useEffect} from 'react';
+
 import {getCardSets, getPublicCardSets} from '../api/set-api.js';
 
-const dummySet1 = [
-	{
-		id: 1,
-		title: 'Spanish',
-		description: 'Words translations - chapter "Family"',
-	},
-	{ id: 2, title: 'History', description: 'Dates from World War II' },
-	{ id: 3, title: 'Math', description: 'Abbreviated multiplication table' },
-	{ id: 4, title: 'Physics', description: 'Formulas for "Electromagnetism"' },
-	{ id: 5, title: 'Chemistry', description: 'Abbreviated periodic table' },
-];
-
-const dummySet2 = [
-	{
-		id: 1,
-		title: 'Biology',
-		description: 'Human body',
-	},
-	{ id: 2, title: 'Geography', description: 'Capitals of the world' },
-	{
-		id: 3,
-		title: 'Computer Science',
-		description: 'Basic concepts of programming',
-	},
-];
 
 const CardSetsPage = () => {
 	const [isUserLoggedIn, setIsUserLoggedIn] = useState(true);
-	const [cardSets, setCardSets] = useState(dummySet2);
-	const [publicCardSets, setPublicCardSets] = useState(dummySet1);
+	const [cardSets, setCardSets] = useState([]);
+	const [publicCardSets, setPublicCardSets] = useState([]);
 
-	// useEffect and fetch funcs - IMPLEMENTATION NEEDS AN UPDATE
 	useEffect(() => {
 		const token = localStorage.getItem('authToken');
 		if (token) {
 			setIsUserLoggedIn(true);
-			// Poprawić jak będzie backend dla użytkownika
-			//fetchCardSets(token);
+			fetchCardSets(token);
 		}
-		fetchCardSets('dummy token'); // Tymczasowo poza if-em, usunąć jak będzie backend dla użytkownika 
+		else setIsUserLoggedIn(false);
 
 		fetchPublicCardSets();
 	}, []);
@@ -50,12 +24,7 @@ const CardSetsPage = () => {
 		const response = await getCardSets(token);
 		
 		if (response.success) {
-			console.log(response.data)
-			if(response.data.length !== 0){
-				setCardSets(response.data);
-			}
-			// setCardSets(response.data || []); wersja docelowa po dodaniu setów do bazy
-
+			setCardSets(response.data || [])
 		} else {
 			// setError(response.errorMessage);
 		}
@@ -65,11 +34,7 @@ const CardSetsPage = () => {
 		const response = await getPublicCardSets();
 
 		if (response.success) {
-			console.log(response.data)
-			if(response.data.length !== 0){
-				setPublicCardSets(response.data);
-			}
-			// setPublicCardSets(response.data || []); wersja docelowa po dodaniu setów do bazy
+			setPublicCardSets(response.data || []);
 
 		} else {
 			// setError(response.errorMessage);

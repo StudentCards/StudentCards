@@ -14,7 +14,6 @@ function PlayPage() {
 	useEffect(() => {
 		const fetchCardSetDetails = async (id) => {
 			const response = await getCardSetDetails(id);
-
 			if (response.success) {
 				setFlashcards(response.data.flashcards);
 				setTitle(response.data.flashcard_set.title);
@@ -39,7 +38,7 @@ function PlayPage() {
 			prevIndex === 0 ? flashcards.length - 1 : prevIndex - 1
 		);
 	};
-	if (flashcards.length == 0) {
+	if (flashcards.length === 0) {
 		return (
 			<div className='mt-20  flex flex-col items-center justify-center'>	
 				<h1 className='text-2xl text-white font-bold mb-6'>

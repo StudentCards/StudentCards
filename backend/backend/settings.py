@@ -127,7 +127,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Ustawienia dla tokenów JWT
 SIMPLE_JWT = {
-    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=5),  # Czas życia tokenu dostępu
+    'ACCESS_TOKEN_LIFETIME': timedelta(hours=1),  # Czas życia tokenu dostępu
     'REFRESH_TOKEN_LIFETIME': timedelta(days=1),  # Czas życia tokenu odświeżenia
     'ROTATE_REFRESH_TOKENS': False,  # Używaj tokenów odświeżania, jeśli chcesz
     'BLACKLIST_AFTER_ROTATION': False,  # Opcjonalnie: blokowanie starych tokenów
