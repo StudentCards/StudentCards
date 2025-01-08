@@ -1,14 +1,17 @@
 import CardSets from '../components/CardSets.jsx';
 import { useState, useEffect } from 'react';
 import { getCardSets, getPublicCardSets } from '../api/set-api.js';
-import CreateSetModal from '../components/modals/CreateSetModal.jsx';
+import ManageSetModal from '../components/modals/ManageSetModal.jsx';
 
 const CardSetsPage = () => {
 	const [isUserLoggedIn, setIsUserLoggedIn] = useState(true);
-	const [isModalOpen, setIsModalOpen] = useState(false);
 
 	const [cardSets, setCardSets] = useState([]);
 	const [publicCardSets, setPublicCardSets] = useState([]);
+
+    const emptySetData = { 'id': 0, 'title': '', 'description': '', 'is_public': false };
+    const [cardSetData, setCardSetData] = useState(emptySetData);
+    const [isCardSetModalOpen, setIsCardSetModalOpen] = useState(false);
 
 	useEffect(() => {
 		const token = localStorage.getItem('authToken');
@@ -23,7 +26,7 @@ const CardSetsPage = () => {
 
 	const fetchCardSets = async token => {
 		const response = await getCardSets(token);
-		
+
 		if (response.success) {
 			setCardSets(response.data || [])
 		} else {
@@ -42,26 +45,17 @@ const CardSetsPage = () => {
 		}
 	};
 
-	const handleCreateNewSet = e => {
-		e.preventDefault();
-
-		const formData = new FormData(event.target);
-		const title = formData.get('title');
-		const description = formData.get('description');
-		// is ID generation needed here or it's just next number added in database ?
-
-		// send data to backend
-
-		setIsModalOpen(false);
-	};
+	const handleCreateCardSet = () => {
+        setIsCardSetModalOpen(true);
+    };
 
 	return (
 		<main className='my-10'>
 			{isUserLoggedIn && (
 				<section className='relative bg-indigo-700 rounded-md pb-16'>
-					<CardSets title='Your private card sets' cardSets={cardSets} />
+					<CardSets title='Your card sets' cardSets={cardSets} />
 					<button
-						onClick={() => setIsModalOpen(true)}
+						onClick={handleCreateCardSet}
 						className='absolute right-5 px-4 p-2 rounded-md transition-all hover:scale-105 hover:bg-indigo-300 text-indigo-950 bg-indigo-200'
 					>
 						Create new card set
@@ -69,12 +63,10 @@ const CardSetsPage = () => {
 				</section>
 			)}
 			<CardSets title='Public card sets' cardSets={publicCardSets} />
-			{isModalOpen && (
-				<CreateSetModal
-					handleCreateNewSet={handleCreateNewSet}
-					setIsModalOpen={setIsModalOpen}
-				/>
-			)}
+
+			{isCardSetModalOpen &&
+				<ManageSetModal selectedSet={cardSetData} setIsOpen={setIsCardSetModalOpen} />
+			}
 		</main>
 	);
 };

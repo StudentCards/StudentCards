@@ -8,17 +8,17 @@ export const REGISTER_URL = `${BASE_URL}auth/registration/`;
 export const LOGOUT_URL = `${BASE_URL}auth/logout/`;
 
 
-export const apiCall = async(func, returnResponseData=false) => {
+export const apiCall = async (func, returnResponseData = false) => {
     try {
         const response = await func();
-        
+
         if (returnResponseData) {
-            return {'success': true, 'data': response.data};
+            return { 'success': true, 'data': response.data };
         } else {
-            return {'success': true};
+            return { 'success': true };
         }
-    } catch(error) {
+    } catch (error) {
         console.log(error);
-        return {'success': false, 'errorMessage': error.message};
+        return { 'success': false, 'errorMessage': error.message };
     }
 }
