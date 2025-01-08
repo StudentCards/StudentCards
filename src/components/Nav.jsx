@@ -15,15 +15,14 @@ const Nav = () => {
 
 	const handleLogout = async () => {
 		try {
-			const refreshToken = localStorage.getItem("refresh_token");
+			const refreshToken = localStorage.getItem("refreshToken");
 			await fetch(LOGOUT_URL, {
 				method: "POST", headers: {
 					"Content-Type": "application/json",
-				}, body: JSON.stringify({refresh_token: refreshToken}),
+				}, body: JSON.stringify({"refresh_token": refreshToken}),
 			});
 
 			// Usuń tokeny z localStorage
-			localStorage.removeItem("access_token");
 			localStorage.removeItem("refresh_token");
 			localStorage.removeItem('authToken');
 
