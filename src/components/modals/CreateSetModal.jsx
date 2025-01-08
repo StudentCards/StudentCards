@@ -2,7 +2,7 @@ const CreateSetModal = ({ handleCreateNewSet, setIsModalOpen }) => {
 	const inputClasses = 'block w-full mb-2 p-2 rounded-md border border-gray-300';
 	const buttonClasses = 'px-4 py-2 rounded-md transition-all hover:scale-105';
 	const saveButtonClasses = 'hover:bg-green-300 text-green-950 bg-green-200 mr-2';
-	const cancelButtonClasses = 'hover:bg-red-300 text-red-950 bg-red-200';
+	const cancelButtonClasses = 'hover:bg-yellow-300 text-yellow-950 bg-yellow-200';
 
 	const renderButtons = () => (
 		<div className='flex justify-end'>

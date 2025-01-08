@@ -1,7 +1,7 @@
 import CardSets from '../components/CardSets.jsx';
 import { useState, useEffect } from 'react';
 import { getCardSets, getPublicCardSets } from '../api/set-api.js';
-import CreateSetModal from '../components/CreateSetModal.jsx';
+import CreateSetModal from '../components/modals/CreateSetModal.jsx';
 
 const CardSetsPage = () => {
 	const [isUserLoggedIn, setIsUserLoggedIn] = useState(true);
