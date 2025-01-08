@@ -9,7 +9,7 @@ const Nav = () => {
 		// will token auth be used???
 		const token = localStorage.getItem('authToken');
 		if (token) {
-			setUsername('asd');
+			setUsername(localStorage.getItem('username'));
 		}
 	}, []);
 

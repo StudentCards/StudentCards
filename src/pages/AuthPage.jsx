@@ -53,6 +53,7 @@ const AuthPage = () => {
                 // Po zalogowaniu zapisz token w localStorage
                 if (isLoginMode) {
                     localStorage.setItem('authToken', result.token);
+                    localStorage.setItem('username', result.username);
                     // przekierowanie do /sets -- niedostępne dla niezalogowanego użytkownika
                     window.location.href = '/sets';
                 } else {
