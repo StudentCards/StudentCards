@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import Label from '../components/formComponents/Label.jsx';
 import InputField from '../components/formComponents/InputField.jsx';
 import Header from '../components/formComponents/Header.jsx';
@@ -10,6 +10,7 @@ const AuthPage = () => {
 	const [errorMessage, setErrorMessage] = useState('');
 	const [successMessage, setSuccessMessage] = useState('');
 	const [loading, setLoading] = useState(false);
+    const formRef = useRef(null);
 
 	const handleSubmit = async e => {
 		e.preventDefault();
@@ -45,6 +46,8 @@ const AuthPage = () => {
 			} else {
 				await register(data);
 				setSuccessMessage('Account created successfully! Please log in.');
+                formRef.current.reset();
+                setIsLoginMode(true)
 			}
 		} catch (error) {
 			setErrorMessage(error.message);
@@ -62,7 +65,7 @@ const AuthPage = () => {
 						isLoginMode ? 'Log in to your account.' : 'Sign up to get started.'
 					}
 				/>
-				<form onSubmit={handleSubmit}>
+				<form ref={formRef} onSubmit={handleSubmit}>
 					<div className='mb-4 sm:mb-6'>
 						<Label htmlFor='email'>Username</Label>
 						<InputField
