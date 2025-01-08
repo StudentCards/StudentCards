@@ -8,27 +8,29 @@ const CardSetsPage = () => {
 
 	const [cardSets, setCardSets] = useState([]);
 	const [publicCardSets, setPublicCardSets] = useState([]);
+	const [isLoading, setIsLoading] = useState(false)
 
-    const emptySetData = { 'id': 0, 'title': '', 'description': '', 'is_public': false };
-    const [cardSetData, setCardSetData] = useState(emptySetData);
-    const [isCardSetModalOpen, setIsCardSetModalOpen] = useState(false);
+	const emptySetData = { 'id': 0, 'title': '', 'description': '', 'is_public': false };
+	const [cardSetData, setCardSetData] = useState(emptySetData);
+	const [isCardSetModalOpen, setIsCardSetModalOpen] = useState(false);
 
 	useEffect(() => {
+		setIsLoading(true)
 		const token = localStorage.getItem('authToken');
 		if (token) {
 			setIsUserLoggedIn(true);
 			fetchCardSets(token);
-		}
-		else setIsUserLoggedIn(false);
+		} else setIsUserLoggedIn(false);
 
 		fetchPublicCardSets();
+		setIsLoading(false)
 	}, []);
 
 	const fetchCardSets = async token => {
 		const response = await getCardSets(token);
 
 		if (response.success) {
-			setCardSets(response.data || [])
+			setCardSets(response.data || []);
 		} else {
 			// setError(response.errorMessage);
 		}
@@ -39,21 +41,24 @@ const CardSetsPage = () => {
 
 		if (response.success) {
 			setPublicCardSets(response.data || []);
-
 		} else {
 			// setError(response.errorMessage);
 		}
 	};
 
 	const handleCreateCardSet = () => {
-        setIsCardSetModalOpen(true);
-    };
+		setIsCardSetModalOpen(true);
+	};
 
 	return (
 		<main className='my-10'>
 			{isUserLoggedIn && (
 				<section className='relative bg-indigo-700 rounded-md pb-16'>
-					<CardSets title='Your card sets' cardSets={cardSets} />
+					<CardSets
+						isLoading={isLoading}
+						title='Your card sets'
+						cardSets={cardSets}
+					/>
 					<button
 						onClick={handleCreateCardSet}
 						className='absolute right-5 px-4 p-2 rounded-md transition-all hover:scale-105 hover:bg-indigo-300 text-indigo-950 bg-indigo-200'
@@ -62,12 +67,16 @@ const CardSetsPage = () => {
 					</button>
 				</section>
 			)}
-			<CardSets title='Public card sets' cardSets={publicCardSets} />
+			<CardSets
+				isLoading={isLoading}
+				title='Public card sets'
+				cardSets={publicCardSets}
+			/>
 
 			{isCardSetModalOpen &&
 				<ManageSetModal selectedSet={cardSetData} setIsOpen={setIsCardSetModalOpen} />
 			}
-		</main>
+		</main >
 	);
 };
 export default CardSetsPage;
