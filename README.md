@@ -112,6 +112,6 @@ To contribute to the project:
 
 
 ## Authors
-- [Piotr Matoszka](https://github.com/qsqus)
 - [Oliwia Strzelec](https://github.com/StrzelecO)
 - [Kamil Marszałek](https://github.com/KamilMarshal)
+- [Piotr Matoszka](https://github.com/qsqus)
