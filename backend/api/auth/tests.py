@@ -92,7 +92,7 @@ class RegisterTestCase(APITestCase):
     """
     def setUp(self):
         # Ustawiamy URL rejestracji
-        self.register_url = reverse('register')  # Zakładając, że endpoint rejestracji ma nazwę 'register'
+        self.register_url = reverse('registration')  # Zakładając, że endpoint rejestracji ma nazwę 'register'
 
     def test_register_successful(self):
         # Dane użytkownika, które będziemy wysyłać w żądaniu
