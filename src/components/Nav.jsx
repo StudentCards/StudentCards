@@ -69,7 +69,7 @@ const Nav = () => {
 									className='bg-indigo-500 px-5 py-2 rounded-md hover:bg-indigo-400 transition-colors'
 									onClick={handleLogout}
 								>
-									Logout
+									Log out
 								</button>
 							</div>
 						)}
