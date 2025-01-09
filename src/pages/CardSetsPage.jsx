@@ -58,13 +58,15 @@ const CardSetsPage = () => {
 						isLoading={isLoading}
 						title='Your card sets'
 						cardSets={cardSets}
-					/>
-					<button
-						onClick={handleCreateCardSet}
-						className='absolute right-5 px-4 p-2 rounded-md transition-all hover:scale-105 hover:bg-indigo-300 text-indigo-950 bg-indigo-200'
 					>
-						Create new card set
-					</button>
+						<button
+							onClick={handleCreateCardSet}
+							className='px-4 p-2 rounded-md transition-all hover:scale-105 hover:bg-indigo-300 text-indigo-950 bg-indigo-200'
+						>
+							Create new card set
+						</button>
+					</CardSets>
+
 				</section>
 			)}
 			<CardSets

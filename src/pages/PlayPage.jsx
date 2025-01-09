@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react';
-import { useParams  } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { getCardSetDetails } from '../api/set-api.js';
 import Flashcard from '../components/Flashcard.jsx';
+import { Link } from 'react-router-dom';
 
 function PlayPage() {
 	const [flashcards, setFlashcards] = useState([]);
@@ -9,7 +10,7 @@ function PlayPage() {
 	const [title, setTitle] = useState('');
 	const [message, setMessage] = useState('');
 
-	const {id} = useParams();
+	const { id } = useParams();
 
 	useEffect(() => {
 		const fetchCardSetDetails = async (id) => {
@@ -18,7 +19,7 @@ function PlayPage() {
 				setFlashcards(response.data.flashcards);
 				setTitle(response.data.flashcard_set.title);
 				setCurrentIndex(0);
-		
+
 				response.data.flashcards.length > 0 || setMessage('This flashcard set is empty 😥');
 			} else {
 				// Error
@@ -40,17 +41,17 @@ function PlayPage() {
 	};
 	if (flashcards.length === 0) {
 		return (
-			<div className='mt-20  flex flex-col items-center justify-center'>	
+			<div className='mt-20  flex flex-col items-center justify-center'>
 				<h1 className='text-2xl text-white font-bold mb-6'>
 					{message}
 				</h1>
 			</div>
 		);
 	}
-	
+
 	return (
-		<div className='mt-20  flex flex-col items-center justify-center'>			
-			<h1 className='text-2xl text-white font-bold mb-6'>
+		<div className='mt-20 flex flex-col items-center justify-center gap-5'>
+			<h1 className='text-2xl text-white font-bold'>
 				{title}
 			</h1>
 
@@ -74,7 +75,16 @@ function PlayPage() {
 						Next
 					</button>
 				</div>
+
 			</div>
+
+			<Link
+				to={`/sets/${id}`}
+				className='bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-2 px-4 rounded-lg w-96 text-center'
+			>
+				View set
+			</Link>
+
 		</div>
 	);
 }

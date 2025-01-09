@@ -14,7 +14,7 @@ function ManageSetModal({ selectedSet, setIsOpen }) {
     const handleCreate = async () => {
         const response = await postCardSet(cardSet, true);
         setIsOpen(false);
-        navigate(`/manage-set/${response.data.id}`);
+        navigate(`/sets/${response.data.id}`);
     };
 
     const handleEdit = async () => {

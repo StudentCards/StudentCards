@@ -9,7 +9,7 @@ const Flashcard = ({ card }) => {
 			onClick={() => setShowAnswer(!showAnswer)}
 		>
 			<div
-				className={`relative w-full h-full transition-all duration-500 transform [transform-style:preserve-3d] ${
+				className={`select-none relative w-full h-full transition-all duration-500 transform [transform-style:preserve-3d] ${
 					showAnswer ? '[transform:rotateY(180deg)]' : ''
 				}`}
 			>

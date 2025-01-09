@@ -5,7 +5,7 @@ import FlashcardListing from '../components/FlashcardListing.jsx';
 import ManageCardModal from '../components/modals/ManageCardModal.jsx';
 import ManageSetModal from '../components/modals/ManageSetModal.jsx';
 
-const ManageSetPage = () => {
+const ViewSetPage = () => {
     const { id } = useParams();
 
     const emptyCard = { 'id': 0, 'question': '', 'answer': '', 'flashcard_set': id };
@@ -67,8 +67,8 @@ const ManageSetPage = () => {
 
             <section className='relative bg-indigo-700 rounded-md pb-1'>
                 <div className='m-10 p-4 text-white'>
-                    <div className='flex justify-between items-center'>
-                        <h1 className='text-2xl sm:text-3xl md:text-4xl font-bold mb-3'>
+                    <div className='flex justify-between items-center my-2'>
+                        <h1 className='text-2xl sm:text-3xl md:text-4xl font-bold'>
                             {cardSetData.title}
                         </h1>
                         <div className='flex flex-row space-x-4'>
@@ -94,10 +94,11 @@ const ManageSetPage = () => {
                     <div className="border-b-2 border-white my-4"></div>
 
                     {message ?
-                        <div className='mt-20 flex flex-col items-center justify-center'>
-                            <h1 className='text-2xl text-white font-bold mb-6'>
+                        <div className='mt-20 flex flex-col items-center justify-center gap-  mb-6'>
+                            <h1 className='text-2xl text-white font-bold'>
                                 {message}
                             </h1>
+                            <p className='text-lg text-white'>Press the "ADD" button to create new cards</p>
                         </div> : ''
                     }
 
@@ -112,5 +113,5 @@ const ManageSetPage = () => {
     );
 };
 
-export default ManageSetPage;
+export default ViewSetPage;
 
