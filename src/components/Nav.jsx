@@ -57,7 +57,7 @@ const Nav = () => {
 								to='/auth'
 								className='bg-indigo-500 px-5 py-2 rounded-md hover:bg-indigo-400 transition-colors'
 							>
-								Login
+								Log in
 							</Link>
 						) : (
 
