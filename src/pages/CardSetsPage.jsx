@@ -1,13 +1,18 @@
 import CardSets from '../components/CardSets.jsx';
 import { useState, useEffect } from 'react';
-
 import { getCardSets, getPublicCardSets } from '../api/set-api.js';
+import ManageSetModal from '../components/modals/ManageSetModal.jsx';
 
 const CardSetsPage = () => {
 	const [isUserLoggedIn, setIsUserLoggedIn] = useState(true);
+
 	const [cardSets, setCardSets] = useState([]);
 	const [publicCardSets, setPublicCardSets] = useState([]);
 	const [isLoading, setIsLoading] = useState(false)
+
+	const emptySetData = { 'id': 0, 'title': '', 'description': '', 'is_public': false };
+	const [cardSetData, setCardSetData] = useState(emptySetData);
+	const [isCardSetModalOpen, setIsCardSetModalOpen] = useState(false);
 
 	useEffect(() => {
 		setIsLoading(true)
@@ -41,8 +46,12 @@ const CardSetsPage = () => {
 		}
 	};
 
+	const handleCreateCardSet = () => {
+		setIsCardSetModalOpen(true);
+	};
+
 	return (
-		<main className='text-white my-10'>
+		<main className='my-10'>
 			{isUserLoggedIn && (
 				<section className='relative bg-indigo-700 rounded-md pb-16'>
 					<CardSets
@@ -50,7 +59,10 @@ const CardSetsPage = () => {
 						title='Your card sets'
 						cardSets={cardSets}
 					/>
-					<button className='absolute right-5 px-4 p-2 rounded-md transition-all hover:scale-105 hover:bg-indigo-300 text-indigo-950 bg-indigo-200'>
+					<button
+						onClick={handleCreateCardSet}
+						className='absolute right-5 px-4 p-2 rounded-md transition-all hover:scale-105 hover:bg-indigo-300 text-indigo-950 bg-indigo-200'
+					>
 						Create new card set
 					</button>
 				</section>
@@ -60,7 +72,11 @@ const CardSetsPage = () => {
 				title='Public card sets'
 				cardSets={publicCardSets}
 			/>
-		</main>
+
+			{isCardSetModalOpen &&
+				<ManageSetModal selectedSet={cardSetData} setIsOpen={setIsCardSetModalOpen} />
+			}
+		</main >
 	);
 };
 export default CardSetsPage;
