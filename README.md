@@ -114,7 +114,7 @@ These screenshots provide a visual overview of the user interface and demonstrat
 *A registration form that allows users to create a new account and get started with the app.*
 
 ### Card Sets
-![Card Sets](https://github.com/user-attachments/assets/a263358b-8e4f-46a0-97a2-62f7427460bd)
+![402156924-a263358b-8e4f-46a0-97a2-62f7427460bd](https://github.com/user-attachments/assets/bc920651-190f-41eb-8688-5dd1bd26b6a1)
 *Display of flashcard sets, including both private (owned by the logged-in user) and public sets.*
 
 ### Flashcard Game
