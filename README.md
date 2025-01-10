@@ -80,6 +80,7 @@ In second terminal:
     ```bash
     py manage.py runserver
     ```
+    *⚠️ **Important**: Make sure the server is running on port `8000` and accessible at `http://127.0.0.1:8000/`. If it runs on any other port, update the `BASE_URL` value accordingly in `frontend/src/api/api.js`.*
 6. Remove database locally:
     ```bash
     py manage.py flush
