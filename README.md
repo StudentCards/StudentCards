@@ -100,6 +100,27 @@ In second terminal:
 3. You will now see the 'Your private card sets' section.
 4. Play with your personal flashcard sets.
 5. Use the provided options to create, edit, add, or delete flashcards.
+   
+## Preview (Screenshots)
+
+These screenshots provide a visual overview of the user interface and demonstrate the main functionalities of the app.
+
+### Registration Form
+![Registration Form](https://github.com/user-attachments/assets/63392116-f409-4467-b78d-83e92adda80a)
+*A registration form that allows users to create a new account and get started with the app. *
+
+### Card Sets
+![Card Sets](https://github.com/user-attachments/assets/a263358b-8e4f-46a0-97a2-62f7427460bd)
+*Display of flashcard sets, including both private (owned by the logged-in user) and public sets. *
+
+### Flashcard Game
+![Flashcard Game](https://github.com/user-attachments/assets/2f7c69ea-aeb0-4700-9d9b-951edb65d71c)
+*A screen showcasing the flashcard game, where users can engage with flashcards to test their knowledge in an interactive way.*
+
+### Set Management
+![Set Management](https://github.com/user-attachments/assets/a3574c04-f019-47a8-bba5-07a59d95f984)
+*A screen for managing flashcard sets, allowing users to create, edit, and delete their personal sets.*
+
 
 ## Contribution
 To contribute to the project:
