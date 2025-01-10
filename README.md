@@ -1,6 +1,6 @@
 # StudentCards Web Application
 
-![Logo](icon.png)
+![Logo](frontend/icon.png)
 
 ## Overview
 The Flashcard Web Application is a collaborative project developed by a team of three, designed to help users learn and memorize information through interactive flashcards. 
@@ -42,13 +42,17 @@ In first terminal:
 1. Clone the repository:
     ```bash
     git clone https://github.com/your-repo/flashcard-app.git
-    cd StudentCards
     ```
-2. Install dependencies:
+2. Navigate to the frontend directory:
+    ```bash
+    cd StudentCards
+    cd frontend
+    ```
+3. Install dependencies:
     ```bash
     npm install
     ```
-3. Start the development server:
+4. Start the development server:
     ```bash
     npm run dev
     ```
@@ -76,6 +80,7 @@ In second terminal:
     ```bash
     py manage.py runserver
     ```
+    *⚠️ **Important**: Make sure the server is running on port `8000` and accessible at `http://127.0.0.1:8000/`. If it runs on any other port, update the `BASE_URL` value accordingly in `frontend/src/api/api.js`.*
 6. Remove database locally:
     ```bash
     py manage.py flush
