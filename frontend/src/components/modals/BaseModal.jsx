@@ -1,5 +1,3 @@
-import { React } from 'react';
-
 const BaseModal = ({ saveFunc, deleteFunc, includeDelete = false, setIsOpen, title, children }) => {
     const buttonClasses = 'px-4 py-2 rounded-md transition-all hover:scale-105';
     const saveButtonClasses = 'hover:bg-green-300 text-green-950 bg-green-200';

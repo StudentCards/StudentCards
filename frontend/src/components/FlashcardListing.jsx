@@ -1,5 +1,3 @@
-import { useState } from 'react';
-
 const FlashcardListing = ({ card, editCardFunc, isOwner }) => {
 
     const handleEditCard = (card) => {

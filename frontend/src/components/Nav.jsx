@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import {LOGOUT_URL} from "../api/api.js";
+import { LOGOUT_URL } from "../api/api.js";
 
 const Nav = () => {
 	const [username, setUsername] = useState('');
