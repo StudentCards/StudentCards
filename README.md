@@ -125,6 +125,14 @@ These screenshots provide a visual overview of the user interface and demonstrat
 ![Set Management](https://github.com/user-attachments/assets/a3574c04-f019-47a8-bba5-07a59d95f984)
 *A screen for managing flashcard sets, allowing users to create, edit, and delete their personal sets.*
 
+### Mobile version
+<div style="display: flex; justify-content: space-around;">
+  <img src="https://github.com/user-attachments/assets/e6d949f6-c902-4059-99f2-5b45b93b294d" width="18%"/>
+  <img src="https://github.com/user-attachments/assets/a7f4bf1c-b415-4f81-8635-1288cce0fbf9" width="18%"/>
+  <img src="https://github.com/user-attachments/assets/c2b36777-c7df-46b5-a176-fd3a661bceb1" width="18%"/>
+  <img src="https://github.com/user-attachments/assets/5ffc893b-0511-4bb7-814c-256bc2680198" width="18%"/>
+  <img src="https://github.com/user-attachments/assets/1526bd60-23bd-4dc0-9f64-b35da005169d" width="18%"/>
+</div>
 
 ## Contribution
 To contribute to the project:
