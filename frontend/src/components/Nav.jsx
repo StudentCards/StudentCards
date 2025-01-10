@@ -55,18 +55,18 @@ const Nav = () => {
 						{username === '' ? (
 							<Link
 								to='/auth'
-								className='bg-indigo-500 px-5 py-2 rounded-md hover:bg-indigo-400 transition-colors'
+								className='text-sm md:text-base bg-indigo-500 px-2 md:px-5 py-2 rounded-md hover:bg-indigo-400 transition-colors'
 							>
 								Log in
 							</Link>
 						) : (
 
 							<div className='flex justify-end items-center'>
-								<p className='text-xl mx-5 text-indigo-200 tracking-tighter'>
+								<p className='md:text-xl mx-5 text-indigo-200 tracking-tighter'>
 									{username}
 								</p>
 								<button
-									className='bg-indigo-500 px-5 py-2 rounded-md hover:bg-indigo-400 transition-colors'
+									className='text-sm md:text-base bg-indigo-500 px-3 md:px-5 py-2 rounded-md hover:bg-indigo-400 transition-colors'
 									onClick={handleLogout}
 								>
 									Log out

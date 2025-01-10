@@ -55,7 +55,7 @@ const ViewSetPage = () => {
         setIsCardModalOpen(true);
     }
 
-    const btnClasses = 'px-4 p-2 rounded-md transition-all hover:scale-105 hover:bg-indigo-300 text-indigo-950 bg-indigo-200'
+    const btnClasses = 'text-sm md:text-base px-2 md:px-4 p-2 rounded-md transition-all hover:scale-105 hover:bg-indigo-300 text-indigo-950 bg-indigo-200'
 
     return (
         <main className='my-10'>
@@ -73,7 +73,7 @@ const ViewSetPage = () => {
                         <h1 className='text-2xl sm:text-3xl md:text-4xl font-bold'>
                             {cardSetData.title}
                         </h1>
-                        <div className='flex flex-row space-x-4'>
+                        <div className='flex flex-row md:space-x-4 space-x-2'>
                             {isOwner &&
                                 [
                                     <button className={btnClasses} onClick={handleEditCardSet} key='EDIT'>

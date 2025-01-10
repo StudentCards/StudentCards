@@ -61,7 +61,7 @@ const CardSetsPage = () => {
 					>
 						<button
 							onClick={handleCreateCardSet}
-							className='px-4 p-2 rounded-md transition-all hover:scale-105 hover:bg-indigo-300 text-indigo-950 bg-indigo-200'
+							className='p-1 md:px-4 md:p-2 rounded-md transition-all hover:scale-105 hover:bg-indigo-300 text-indigo-950 bg-indigo-200'
 						>
 							Create new card set
 						</button>
