@@ -22,3 +22,13 @@ export const apiCall = async (func, returnResponseData = false) => {
         return { 'success': false, 'errorMessage': error.message };
     }
 }
+
+export const getApiCallConfig = () => {
+    const token = localStorage.getItem('authToken');
+    if (token) {
+        return { headers: { Authorization: `Bearer ${token}` } };
+    }
+    return {};
+}
+
+// authToken refreshToken

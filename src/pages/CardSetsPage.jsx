@@ -19,15 +19,15 @@ const CardSetsPage = () => {
 		const token = localStorage.getItem('authToken');
 		if (token) {
 			setIsUserLoggedIn(true);
-			fetchCardSets(token);
+			fetchCardSets();
 		} else setIsUserLoggedIn(false);
 
 		fetchPublicCardSets();
 		setIsLoading(false)
 	}, []);
 
-	const fetchCardSets = async token => {
-		const response = await getCardSets(token);
+	const fetchCardSets = async () => {
+		const response = await getCardSets();
 
 		if (response.success) {
 			setCardSets(response.data || []);

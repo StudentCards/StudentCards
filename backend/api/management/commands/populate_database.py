@@ -1,17 +1,24 @@
 from django.core.management.base import BaseCommand
+from django.contrib.auth.models import User
 from api.models import FlashcardSet, Flashcard
 
 
 class Command(BaseCommand):
     def handle(self, *args, **kwargs):
-        set1 = self.create_flashcard_set('Math', 'Basic math flashcards for beginners', True)
-        set2 = self.create_flashcard_set('Geography', 'Geography related flashcards about the world', True)
-        set3 = self.create_flashcard_set('Science', 'Flashcards covering basic science topics', True)
-        set4 = self.create_flashcard_set('History', 'Flashcards on historical events and figures', True)
-        set5 = self.create_flashcard_set('Literature', 'Flashcards for literary works and authors', False)
-        set6 = self.create_flashcard_set('Technology', 'Flashcards about tech terms and innovations', False)
-        set7 = self.create_flashcard_set('Animals', 'Flashcards on animals and their characteristics', False)
-        set8 = self.create_flashcard_set('Art', 'Flashcards on art history and famous artists', False)
+        user1_data = ('john_doe', 'password123')
+        user2_data = ('jane_smith', 'password456')
+
+        user1 = self.create_user(user1_data[0], user1_data[1])
+        user2 = self.create_user(user2_data[0], user2_data[1])
+
+        set1 = self.create_flashcard_set('Math', 'Basic math flashcards for beginners', True, user1)
+        set2 = self.create_flashcard_set('Geography', 'Geography related flashcards about the world', True, user1)
+        set3 = self.create_flashcard_set('Science', 'Flashcards covering basic science topics', True, user2)
+        set4 = self.create_flashcard_set('History', 'Flashcards on historical events and figures', True, user2)
+        set5 = self.create_flashcard_set('Literature', 'Flashcards for literary works and authors', False, user1)
+        set6 = self.create_flashcard_set('Technology', 'Flashcards about tech terms and innovations', False, user1)
+        set7 = self.create_flashcard_set('Animals', 'Flashcards on animals and their characteristics', False, user2)
+        set8 = self.create_flashcard_set('Art', 'Flashcards on art history and famous artists', False, user2)
 
         self.create_flashcards_for_set(set1,
         [
@@ -71,12 +78,20 @@ class Command(BaseCommand):
         ])
 
         self.stdout.write(self.style.SUCCESS('Database populated'))
+        self.stdout.write(self.style.SUCCESS(f'Users data: \n{user1_data}\n{user2_data}'))
     
-    def create_flashcard_set(self, title, description, is_public):
+    def create_user(self, username, password):
+        return User.objects.create_user(
+            username=username, 
+            password=password
+        )
+
+    def create_flashcard_set(self, title, description, is_public, owner):
         return FlashcardSet.objects.create(
             title=title,
             description=description,
-            is_public=is_public
+            is_public=is_public,
+            owner=owner
         )
 
     def create_flashcards_for_set(self, flashcard_set, flashcards_data):
@@ -84,5 +99,6 @@ class Command(BaseCommand):
             Flashcard.objects.create(
                 question=question,
                 answer=answer,
-                flashcard_set=flashcard_set
+                flashcard_set=flashcard_set,
+                owner=flashcard_set.owner
             )

@@ -12,6 +12,7 @@ const ViewSetPage = () => {
     const emptySetData = { 'id': 0, 'title': '', 'description': '', 'is_public': false };
 
     const [cardSetData, setCardSetData] = useState(emptySetData);
+    const [isOwner, setIsOwner] = useState(false);
     const [flashcards, setFlashcards] = useState([]);
     const [message, setMessage] = useState('');
     const [selectedCard, setSelectedCard] = useState(emptyCard);
@@ -32,6 +33,7 @@ const ViewSetPage = () => {
         if (response.success) {
             setFlashcards(response.data.flashcards);
             setCardSetData(response.data.flashcard_set);
+            setIsOwner(response.data.is_owner);
 
             response.data.flashcards.length === 0 ? setMessage('This flashcard set is empty 😥') : setMessage('');
         } else {
@@ -57,7 +59,7 @@ const ViewSetPage = () => {
 
     return (
         <main className='my-10'>
-            {isCardModalOpen &&
+            {(isOwner && isCardModalOpen) &&
                 <ManageCardModal selectedCard={selectedCard} setIsOpen={setIsCardModalOpen} />
             }
 
@@ -72,12 +74,16 @@ const ViewSetPage = () => {
                             {cardSetData.title}
                         </h1>
                         <div className='flex flex-row space-x-4'>
-                            <button className={btnClasses} onClick={handleEditCardSet}>
-                                EDIT
-                            </button>
-                            <button className={btnClasses} onClick={handleCreateCard}>
-                                ADD
-                            </button>
+                            {isOwner &&
+                                [
+                                    <button className={btnClasses} onClick={handleEditCardSet} key='EDIT'>
+                                        EDIT
+                                    </button>,
+                                    <button className={btnClasses} onClick={handleCreateCard} key='ADD'>
+                                        ADD
+                                    </button>
+                                ]
+                            }
                             <Link
                                 to={`/play/${id}`}
                                 className={btnClasses}
@@ -103,7 +109,7 @@ const ViewSetPage = () => {
                     }
 
                     <ul className='flex flex-col items-center mx-auto gap-5'>
-                        {flashcards.map((card) => (<FlashcardListing card={card} key={card.id} editCardFunc={handleEditCard} />))}
+                        {flashcards.map((card) => (<FlashcardListing card={card} key={card.id} editCardFunc={handleEditCard} isOwner={isOwner} />))}
                     </ul>
 
                 </div>
