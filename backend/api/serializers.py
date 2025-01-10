@@ -6,13 +6,15 @@ from django.contrib.auth.models import User
 class FlashcardSerializer(serializers.ModelSerializer):
     class Meta:
         model = Flashcard
-        fields = ['id', 'question', 'answer', 'flashcard_set']
+        fields = ['id', 'question', 'answer', 'flashcard_set', 'owner']
+        read_only_fields = ['owner']
 
 
 class FlashcardSetSerializer(serializers.ModelSerializer):
     class Meta:
         model = FlashcardSet
-        fields = ['id', 'title', 'description', 'is_public']
+        fields = ['id', 'title', 'description', 'is_public', 'owner']
+        read_only_fields = ['owner']
 
 
 class RegisterSerializer(serializers.ModelSerializer):

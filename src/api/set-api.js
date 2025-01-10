@@ -1,9 +1,12 @@
 import { apiCall, FLASHCARD_SETS_URL, PUBLIC_FLASHCARD_SETS_URL } from './api.js';
 import axios from 'axios';
 
-export const getCardSets = async (token) => {
-    const response = await apiCall(() => axios.get(FLASHCARD_SETS_URL), true);
-    return response;
+export const getCardSets = async (token1) => {
+    const token = localStorage.getItem('authToken');
+    if (token) {
+        const response = await apiCall(() => axios.get(FLASHCARD_SETS_URL, { headers: { Authorization: `Bearer ${token}` } }), true);
+        return response;
+    }
 };
 
 export const getPublicCardSets = async () => {
@@ -12,22 +15,33 @@ export const getPublicCardSets = async () => {
 };
 
 export const getCardSetDetails = async (id) => {
-    const response = await apiCall(() => axios.get(`${FLASHCARD_SETS_URL}${id}/`),
-        true);
-    return response;
+    const token = localStorage.getItem('authToken');
+    if (token) {
+        const response = await apiCall(() => axios.get(`${FLASHCARD_SETS_URL}${id}/`, { headers: { Authorization: `Bearer ${token}` } }), true);
+        return response;
+    }
 }
 
 export const postCardSet = async (data, returnResponseData = false) => {
-    const response = await apiCall(() => axios.post(FLASHCARD_SETS_URL, data), returnResponseData);
-    return response;
+    const token = localStorage.getItem('authToken');
+    if (token) {
+        const response = await apiCall(() => axios.post(FLASHCARD_SETS_URL, data, { headers: { Authorization: `Bearer ${token}` } }), returnResponseData);
+        return response;
+    }
 }
 
 export const putCardSet = async (data) => {
-    const response = await apiCall(() => axios.put(`${FLASHCARD_SETS_URL}${data.id}/`, data));
-    return response;
+    const token = localStorage.getItem('authToken');
+    if (token) {
+        const response = await apiCall(() => axios.put(`${FLASHCARD_SETS_URL}${data.id}/`, data, { headers: { Authorization: `Bearer ${token}` } }));
+        return response;
+    }
 }
 
 export const deleteCardSet = async (id) => {
-    const response = await apiCall(() => axios.delete(`${FLASHCARD_SETS_URL}${id}/`));
-    return response;
+    const token = localStorage.getItem('authToken');
+    if (token) {
+        const response = await apiCall(() => axios.delete(`${FLASHCARD_SETS_URL}${id}/`, { headers: { Authorization: `Bearer ${token}` } }));
+        return response;
+    }
 }

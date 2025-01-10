@@ -7,16 +7,25 @@ export const getFlashcard = async (id) => {
 }
 
 export const postFlashcard = async (data) => {
-    const response = await apiCall(() => axios.post(FLASHCARDS_URL, data));
-    return response;
+    const token = localStorage.getItem('authToken');
+    if (token) {
+        const response = await apiCall(() => axios.post(FLASHCARDS_URL, data, { headers: { Authorization: `Bearer ${token}` } }));
+        return response;
+    }
 }
 
 export const putFlashcard = async (data) => {
-    const response = await apiCall(() => axios.put(`${FLASHCARDS_URL}${data.id}/`, data));
-    return response;
+    const token = localStorage.getItem('authToken');
+    if (token) {
+        const response = await apiCall(() => axios.put(`${FLASHCARDS_URL}${data.id}/`, data, { headers: { Authorization: `Bearer ${token}` } }));
+        return response;
+    }
 }
 
 export const deleteFlashcard = async (id) => {
-    const response = await apiCall(() => axios.delete(`${FLASHCARDS_URL}${id}/`));
-    return response;
+    const token = localStorage.getItem('authToken');
+    if (token) {
+        const response = await apiCall(() => axios.delete(`${FLASHCARDS_URL}${id}/`, { headers: { Authorization: `Bearer ${token}` } }));
+        return response;
+    }
 }

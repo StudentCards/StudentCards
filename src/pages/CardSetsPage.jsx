@@ -26,7 +26,7 @@ const CardSetsPage = () => {
 		setIsLoading(false)
 	}, []);
 
-	const fetchCardSets = async token => {
+	const fetchCardSets = async (token) => {
 		const response = await getCardSets(token);
 
 		if (response.success) {
