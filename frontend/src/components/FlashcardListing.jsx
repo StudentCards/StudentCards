@@ -17,7 +17,7 @@ const FlashcardListing = ({ card, editCardFunc, isOwner }) => {
                 </div>
                 {isOwner &&
                     <button
-                        className='w-min px-2 rounded-md text-white bg-indigo-500 hover:bg-indigo-400 hover:scale-95 transition-all aspect-square w-[10%]'
+                        className='px-2 rounded-md text-white bg-indigo-500 hover:bg-indigo-400 hover:scale-95 transition-all aspect-square md:w-[10%]'
                         onClick={() => handleEditCard(card)}
                     >
                         EDIT
