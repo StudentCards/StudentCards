@@ -1,8 +1,19 @@
 # StudentCards Web Application
 
+
+![GitHub contributors](https://img.shields.io/github/contributors/StudentCards/StudentCards)
+![GitHub Created At](https://img.shields.io/github/created-at/StudentCards/StudentCards)
+![GitHub top language](https://img.shields.io/github/languages/top/StudentCards/StudentCards)
+![GitHub language count](https://img.shields.io/github/languages/count/StudentCards/StudentCards)
+![GitHub repo size](https://img.shields.io/github/repo-size/StudentCards/StudentCards)
+
+![GitHub commit activity](https://img.shields.io/github/commit-activity/m/StudentCards/StudentCards)
+![GitHub License](https://img.shields.io/github/license/StudentCards/StudentCards)
+
 ![Logo](frontend/icon.png)
 
 ## Overview
+
 The Flashcard Web Application is a collaborative project developed by a team of three, designed to help users learn and memorize information through interactive flashcards. 
 The application allows users to play flashcard games, create their own flashcard sets, and manage their flashcards with functionalities such as editing, adding, and deleting cards. 
 
@@ -114,7 +125,8 @@ These screenshots provide a visual overview of the user interface and demonstrat
 *A registration form that allows users to create a new account and get started with the app.*
 
 ### Card Sets
-![402156924-a263358b-8e4f-46a0-97a2-62f7427460bd](https://github.com/user-attachments/assets/bc920651-190f-41eb-8688-5dd1bd26b6a1)
+
+![Card Sets](https://github.com/user-attachments/assets/bc920651-190f-41eb-8688-5dd1bd26b6a1)
 *Display of flashcard sets, including both private (owned by the logged-in user) and public sets.*
 
 ### Flashcard Game
@@ -127,14 +139,15 @@ These screenshots provide a visual overview of the user interface and demonstrat
 
 ### Mobile version
 <div style="display: flex; justify-content: space-around;">
-  <img src="https://github.com/user-attachments/assets/e6d949f6-c902-4059-99f2-5b45b93b294d" width="18%"/>
-  <img src="https://github.com/user-attachments/assets/a7f4bf1c-b415-4f81-8635-1288cce0fbf9" width="18%"/>
-  <img src="https://github.com/user-attachments/assets/c2b36777-c7df-46b5-a176-fd3a661bceb1" width="18%"/>
-  <img src="https://github.com/user-attachments/assets/5ffc893b-0511-4bb7-814c-256bc2680198" width="18%"/>
-  <img src="https://github.com/user-attachments/assets/1526bd60-23bd-4dc0-9f64-b35da005169d" width="18%"/>
+  <img src="https://github.com/user-attachments/assets/e6d949f6-c902-4059-99f2-5b45b93b294d" width="18%" alt="Start Page"/>
+  <img src="https://github.com/user-attachments/assets/a7f4bf1c-b415-4f81-8635-1288cce0fbf9" width="18%" alt="Registration Form"/>
+  <img src="https://github.com/user-attachments/assets/c2b36777-c7df-46b5-a176-fd3a661bceb1" width="18%" alt="Question"/>
+  <img src="https://github.com/user-attachments/assets/5ffc893b-0511-4bb7-814c-256bc2680198" width="18%" alt="Card Sets"/>
+  <img src="https://github.com/user-attachments/assets/1526bd60-23bd-4dc0-9f64-b35da005169d" width="18%" alt="Edit Card Set"/>
 </div>
 
 ## Contribution
+
 To contribute to the project:
 1. Fork the repository.
 2. Create a new branch:
@@ -153,6 +166,7 @@ To contribute to the project:
 
 
 ## Authors
+
 - [Oliwia Strzelec](https://github.com/StrzelecO)
 - [Kamil Marszałek](https://github.com/KamilMarshal)
 - [Piotr Matoszka](https://github.com/qsqus)
