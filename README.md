@@ -52,7 +52,7 @@ This project was created as part of the Software Architecture course.
 In first terminal:
 1. Clone the repository:
     ```bash
-    git clone https://github.com/your-repo/flashcard-app.git
+    git clone https://github.com/StudentCards/StudentCards.git
     ```
 2. Navigate to the frontend directory:
     ```bash
