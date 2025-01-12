@@ -1,44 +1,55 @@
 @startuml
-package "Flashcard Web Application" {
+package "StudentCards" {
   
   component "Frontend" {
-    [User Interface]
-    [Game Interface]
-    [Set Management Interface]
-    [Flashcard Management Interface]
+    
+
+    component "User Interface" {
+    [Play Interface]
+    [Set Interface]
+    [Flashcard Interface]
+    [Authentication Interface]
+
+    }
     [API Calls]
 
-    [User Interface] --> [API Calls]
-    [Game Interface] --> [API Calls]
-    [Set Management Interface] --> [API Calls]
-    [Flashcard Management Interface] --> [API Calls]
+    [User Interface] --> [API Calls] : Send Requests
   }
   
   component "Backend" {
-    [Authentication Service]
-    [Flashcard Management Service]
-    [Public Set Service]
     [API Gateway]
+    [Authentication Service]
+    [Flashcard/Set Management Service]
+    [User Management Service]
+    [Public Sets Service]
+
+
+    [API Gateway] --> [User Management Service] : Manage Users
+    [API Gateway] --> [Flashcard/Set Management Service] : CRUD Operations
+    [API Gateway] --> [Public Sets Service] : Get Public Sets
+
+    [User Management Service] --> [Authentication Service] : Authenticate Users
+    [Flashcard/Set Management Service] --> [Authentication Service] : Authenticate Users
   }
   
+  [API Calls] --> [API Gateway] : REST API Calls
+
+
+
   database "Database" {
     [Users Table]
     [Flashcard Sets Table]
     [Flashcards Table]
   }
-  
-  [API Calls] --> [API Gateway] : REST API Calls
-  [API Gateway] --> [Authentication Service] : Authenticate Users
-  [API Gateway] --> [Flashcard Management Service] : CRUD Operations
-  [API Gateway] --> [Public Set Service] : Read Sets
 
-  [Authentication Service] --> [Users Table] : Validate Login Data
-  [Flashcard Management Service] --> [Flashcard Sets Table] : Manage Sets
-  [Flashcard Management Service] --> [Flashcards Table] : Manage Flashcards
-  [Public Set Service] --> [Flashcard Sets Table] : Retrieve Public Sets
+  [User Management Service] --> [Users Table] : Manage Users
+  [Authentication Service] --> [Users Table] : Validate User Data
+  [Public Sets Service] --> [Flashcard Sets Table] : Retrieve Public Sets
+  [Flashcard/Set Management Service] --> [Flashcard Sets Table] : Manage Sets
+  [Flashcard/Set Management Service] --> [Flashcards Table] : Manage Flashcards
 
-  [Flashcard Sets Table] --> [Users Table] : Owner
-  [Flashcards Table] --> [Flashcard Sets Table] : Flashcard Set
-  [Flashcards Table] --> [Users Table] : Owner
+  [Flashcard Sets Table] --> [Users Table] : Belongs To
+  [Flashcards Table] --> [Flashcard Sets Table] : Belongs To
+  [Flashcards Table] --> [Users Table] : Belongs To
 }
 @enduml
