@@ -43,6 +43,7 @@ package "StudentCards" {
   }
 
   [User Management Service] --> [Users Table] : Manage Users
+  [User Management Service] --> [Users Table] : Authorize Users
   [Authentication Service] --> [Users Table] : Validate User Data
   [Public Sets Service] --> [Flashcard Sets Table] : Retrieve Public Sets
   [Flashcard/Set Management Service] --> [Flashcard Sets Table] : Manage Sets
