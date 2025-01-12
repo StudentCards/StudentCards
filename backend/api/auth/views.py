@@ -5,6 +5,7 @@ from rest_framework.response import Response
 from rest_framework.status import HTTP_200_OK, HTTP_400_BAD_REQUEST
 from rest_framework.views import APIView
 from rest_framework_simplejwt.tokens import RefreshToken, TokenError
+from rest_framework.permissions import IsAuthenticated
 
 from .serializers import RegisterSerializer
 
@@ -64,3 +65,23 @@ class LogoutView(APIView):
             return Response({"detail": "Successfully logged out."}, status=HTTP_200_OK)
         except TokenError:
             return Response({"detail": "Invalid or expired token"}, status=HTTP_400_BAD_REQUEST)
+
+
+class DeleteAccountView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def delete(self, request):
+        user = request.user
+        password = request.data.get('password')
+
+        if not password:
+            return Response({'detail': 'Password is required to delete the account.'}, status=status.HTTP_400_BAD_REQUEST)
+
+        # Authenticate the user with the provided password
+        if not user.check_password(password):
+            return Response({'detail': 'Invalid password.'}, status=status.HTTP_403_FORBIDDEN)
+
+        # Delete the user account
+        user.delete()
+
+        return Response({'detail': 'Your account has been deleted successfully.'}, status=status.HTTP_200_OK)
